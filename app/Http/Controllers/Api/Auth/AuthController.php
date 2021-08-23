@@ -31,7 +31,7 @@ class AuthController extends Controller
             return response()->json($respon, 200);
         }else{
             $credentials = request(['username', 'password']);
-            $credentials = Arr::add($credentials, 'status', 'aktif');
+            $credentials = Arr::add($credentials, 'status', 'Aktif');
             if (!Auth::attempt($credentials)) {
                 $respon = [
                     'status' => 'error',
@@ -82,6 +82,7 @@ class AuthController extends Controller
             DB::beginTransaction();
             try{
                 $request['password'] = \Hash::make($request['password']);
+                $request['status'] = 'Aktif';
                 $post = User::create($request->all());
                 DB::commit();
                 return $this->successResponse($post,'Success');
