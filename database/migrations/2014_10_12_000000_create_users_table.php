@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('status');
+            // $table->integer('cabang_id')->unsigned();
+            // $table->foreign('cabang_id')->references('id')->on('cabang');
             $table->rememberToken();
             $table->timestamps();
         });
