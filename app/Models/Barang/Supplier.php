@@ -11,8 +11,8 @@ class Supplier extends Model
     protected $table = "supplier";
 
 
-    public function dsupplier(){
-        return $this->hasMany('App\Models\Barang\Barang');
-    }
+    // public function dsupplier(){
+    //     return $this->hasMany('App\Models\Barang\Barang');
+    // }
 
 }

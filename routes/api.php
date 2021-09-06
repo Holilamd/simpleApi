@@ -23,9 +23,8 @@ Route::group(["prefix" =>"v1"], function(){
     });
     Route::middleware('auth:sanctum')->group( function(){
         Route::post('addUser', [AuthController::class,"addUser"]);
-        Route::get('barang', [BarangController::class,"index"]);
+        Route::get('getAll', [BarangController::class,"index"]);
         Route::post('addBarang', [BarangController::class,"addBarang"]);
-        Route::get('getAll', [BarangController::class,"getAll"]);
     });
 
 });

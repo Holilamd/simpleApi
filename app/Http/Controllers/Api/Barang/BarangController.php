@@ -18,7 +18,7 @@ class BarangController extends Controller
         $this->barangService = $barangService;
     }
 
-    public function getAll(){
+    public function index(){
 
         try{
             $data  = $this->barangService->getAll();

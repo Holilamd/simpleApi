@@ -13,8 +13,8 @@ class Satuan extends Model
     protected $primaryKey = "id";
     protected $fillable = ["id","name","status"];
 
-    public function dsatuan(){
-        return $this->hasMany('App\Models\Barang\Barang');
-    }
+    // public function dsatuan(){
+    //     return $this->hasMany('App\Models\Barang\Barang');
+    // }
 
 }
