@@ -52,12 +52,13 @@ class AuthController extends Controller
                 'msg' => 'Login successfully',
                 'errors' => null,
                 'status_code' => 200,
-                
+                'Bearer_token' =>$tokenResult,
+
             ];
             return response()->json($respon, 200);
         }
     }
-   
+
     public function addUser(Request $request){
         $validate = \Validator::make($request->all(), [
             'name' => 'required',

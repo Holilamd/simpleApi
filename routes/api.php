@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\Barang\BarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +16,15 @@ use App\Http\Controllers\Api\Auth\AuthController;
 |
 */
 Route::group(["prefix" =>"v1"], function(){
-
-    Route::post('addUser', [AuthController::class,"addUser"]);
+    Route::post('login',[AuthController::class,"login"]);
 
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();
     });
+    Route::middleware('auth:sanctum')->group( function(){
+        Route::post('addUser', [AuthController::class,"addUser"]);
+        Route::get('barang', [BarangController::class,"index"]);
+        Route::post('addBarang', [BarangController::class,"addBarang"]);
+    });
+
 });
