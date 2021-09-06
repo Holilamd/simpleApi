@@ -30,7 +30,6 @@ class BarangController extends Controller
         return $result;
 
     }
-    // Request $request
     public function addBarang(Request $request){
         DB::beginTransaction();
         try{
@@ -39,7 +38,7 @@ class BarangController extends Controller
             return $this->successResponse($data,'Success');
         }catch(\Exception $e){
             DB::rollBack();
-            return $this->errorResponse('Something Went Wrong! '.$e,501);
+            return $this->errorResponse($e->getMessage(),501);
         }
     }
 

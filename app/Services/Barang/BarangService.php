@@ -10,9 +10,10 @@ class BarangService{
 
     protected $barangRepository;
 
-    public function __construct(BarangRepository $barangRepository){
+    public function __construct(BarangRepository $barangRepository/*,Barang $entityName*/){
 
         $this->barangRepository = $barangRepository;
+        // $this->entityName = $entityName;
     }
 
     public function getAll(){
@@ -21,7 +22,7 @@ class BarangService{
 
     public function saveData($data){
         $validate = Validator::make($data,[
-            'kode_barang' => 'required',
+            'kode_barang' => 'required|unique:barang',
             'nm_barang' => 'required',
             'satuan_id' => 'required',
             'supplier_id' => 'required',
@@ -31,12 +32,10 @@ class BarangService{
         if($validate->fails()){
             throw new InvalidArgumentException($validate->errors()->first());
         }
-        $tmp['id'] = Barang::where('kode_barang',$data['kode_barang'])->first();
-        if($tmp['id']){
-            throw new \InvalidArgumentException('Kode Barang '.$data['kode_barang'].' already',501);
-        }
         $result = $this->barangRepository->saveData($data);
         return $result;
     }
+
+
 
 }

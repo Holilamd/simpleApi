@@ -8,15 +8,15 @@ use App\Models\Barang\Kategori;
 
 class BarangRepository {
 
-    protected $masterBarang;
+    protected $entityBarang;
 
-    public function __construct(Barang $masterBarang){
+    public function __construct(Barang $entityBarang){
 
-        $this->masterBarang = $masterBarang;
+        $this->entityBarang = $entityBarang;
     }
 
     public function getAll(){
-        $data = $this->masterBarang::get()
+        $data = $this->entityBarang::get()
                 ->map(function($data){
                     return[
                         'name'=> $data->name
@@ -26,8 +26,11 @@ class BarangRepository {
     }
 
     public function saveData($data){
-        // return var_dump($data);
-        $post = $this->masterBarang::create($data);
+        $post = $this->entityBarang::create($data);
         return $post->fresh();
+    }
+
+    public function getData($params,$field){
+        return $this->entityName::where($field,$params)->first();
     }
 }
