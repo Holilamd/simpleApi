@@ -19,7 +19,12 @@ class BarangRepository {
         $data = $this->entityBarang::get()
                 ->map(function($data){
                     return[
-                        'name'=> $data->name
+                        'kode_barang'=> $data->kode_barang,
+                        'nm_barang'=> $data->nm_barang,
+                        'kategori'=> $data->kategori->name,
+                        'satuan'=> $data->satuan->name,
+                        'merk'=> $data->merk->name,
+                        'supplier'=> $data->supplier->name,
                     ];
                 });
         return $data;

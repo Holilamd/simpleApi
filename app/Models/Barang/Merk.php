@@ -9,5 +9,10 @@ class Merk extends Model
 {
     use HasFactory;
     protected $table = "merk";
+    protected $primaryKey = "id";
+    protected $fillable = ["id","name","description"];
 
+    public function dmerk(){
+        return $this->hasMany('App\Models\Barang\Barang');
+    }
 }

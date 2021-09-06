@@ -14,4 +14,17 @@ class Barang extends Model
                             "satuan_id"	,"supplier_id",
                             "merk_id","kategori_id"
                             ];
+
+    public function kategori(){
+        return $this->belongsTo('App\Models\Barang\Kategori');
+    }
+    public function merk(){
+        return $this->belongsTo('App\Models\Barang\Merk');
+    }
+    public function satuan(){
+        return $this->belongsTo('App\Models\Barang\Satuan');
+    }
+    public function supplier(){
+        return $this->belongsTo('App\Models\Barang\Supplier');
+    }
 }

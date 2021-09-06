@@ -10,5 +10,11 @@ class Satuan extends Model
     use HasFactory;
 
     protected $table = "satuan";
+    protected $primaryKey = "id";
+    protected $fillable = ["id","name","status"];
+
+    public function dsatuan(){
+        return $this->hasMany('App\Models\Barang\Barang');
+    }
 
 }
