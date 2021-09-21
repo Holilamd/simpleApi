@@ -27,6 +27,10 @@ class BarangRepository {
         return $data;
     }
 
+    public function getDatafirst($params,$field){
+        return $this->entityBarang::where($field,$params)->first();
+    }
+
     public function saveData($data){
         $post = $this->entityBarang::create($data);
         return $post->fresh();
@@ -36,8 +40,10 @@ class BarangRepository {
 
     }
 
-    public function getDatafirst($params,$field){
-        return $this->entityBarang::where($field,$params)->first();
+    public function saveDelete(){
+
     }
+
+
 
 }
