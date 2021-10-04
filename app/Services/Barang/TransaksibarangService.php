@@ -5,6 +5,7 @@ namespace App\Services\Barang;
 use Exception;
 use Illuminate\Support\Facades\Validator;
 use App\Repositories\Barang\TransaksiBarangRepository;
+use Illuminate\Support\Facades\Auth;
 use InvalidArgumentException;
 
 class TransaksibarangService {
@@ -27,9 +28,16 @@ class TransaksibarangService {
         if (count($params['detail']) === 0) {
             throw new InvalidArgumentException('Details tidak boleh kosong!');
         }
+
         $dt = $params;
         unset($dt['detail']);
+        $dt['tgltransaksi'] = date('Y-m-d');
+        $dt['created_by'] = Auth::user()->id;
+        $dt['created_date'] = date('Y-m-d H:i:s');
+        $dt['verifikasi_date'] = date('Y-m-d');
         $result = $this->transaksiBarangRepository->saveHeader($dt);
+        $res['header'] = $result;
+        $res['detail']= [];
         foreach ($params['detail'] as $i=> $data) {
             $data['transaksibarang_id'] = $result->id;
             if(empty($data['barang_id'])){
@@ -50,9 +58,10 @@ class TransaksibarangService {
             if($data['qty_in']+$data['qty_out'] ===0.0){
                 throw new InvalidArgumentException('Details qty tidak boleh kosong!');
             }
-            $this->transaksiBarangRepository->saveDetail($data);
+            $restDetail = $this->transaksiBarangRepository->saveDetail($data);
+            $res['detail'][$i] = $restDetail;
         }
 
-        return $result;
+        return $res;
     }
 }
