@@ -17,4 +17,4 @@
 - Jalnkan Perintah php artisan db:seed
 - Jalankan Perintah php artisan server
  ## Contoh Api
- - Dokumen https://documenter.getpostman.com/view/1522117/UUy3A
+ - Dokumen https://documenter.getpostman.com/view/1522117/UUy3ASuW
