@@ -26,8 +26,8 @@ Route::group(["prefix" =>"v1"], function(){
         Route::post('addUser', [AuthController::class,"addUser"]);
         Route::get('getAllBarang', [BarangController::class,"index"]);
         Route::post('addBarang', [BarangController::class,"addBarang"]);
-
         Route::post('saveTransaksi',[TransaksiBarangController::class, "saveTransaksi"]);
     });
+
 
 });
